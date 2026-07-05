@@ -618,7 +618,7 @@ img{max-width:100%}
     </div>
     <div class="foot-bot">
       <span data-en="© 2026 Formosa Hydro Co., Ltd.">© 2026 瀚水科技有限公司 Formosa Hydro Co., Ltd.</span>
-      <span data-en="Taiwan company registration no. 62209948">統編: 62209948</span>
+      <span data-en="Taiwan business no. 62209948">統編: 62209948</span>
     </div>
   </div>
 </footer>
@@ -812,6 +812,9 @@ img{max-width:100%}
     document.addEventListener("fh:navigate", function(e){
       if(e.detail.id === "home") boot();
     });
+    if(document.fonts && document.fonts.ready){
+      document.fonts.ready.then(function(){ boot(); });
+    }
   }
 
   /* ---------- membrane mini canvas (about page) ---------- */
@@ -852,7 +855,11 @@ img{max-width:100%}
     document.addEventListener("fh:navigate", function(e){
       if(e.detail.id === "about") msize();
     });
+    if(document.fonts && document.fonts.ready){
+      document.fonts.ready.then(function(){ msize(); });
+    }
   }
+  
 
   /* ---------- contact form ---------- */
   var f=document.getElementById("cform");
