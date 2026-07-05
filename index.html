@@ -641,6 +641,7 @@ img{max-width:100%}
     window.scrollTo({top:0,behavior: reduce ? "auto":"smooth"});
     if(history.replaceState) history.replaceState(null,"","#"+id);
     revealScan();
+    document.dispatchEvent(new CustomEvent("fh:navigate", { detail: { id: id } }));  // 新增這行
   }
   document.addEventListener("click",function(e){
     var t=e.target.closest("[data-go]");
@@ -808,6 +809,9 @@ img{max-width:100%}
     }
     var rt; window.addEventListener("resize",function(){ clearTimeout(rt); rt=setTimeout(boot,180); });
     boot();
+    document.addEventListener("fh:navigate", function(e){
+      if(e.detail.id === "home") boot();
+    });
   }
 
   /* ---------- membrane mini canvas (about page) ---------- */
@@ -845,6 +849,9 @@ img{max-width:100%}
     var mraf, mrt;
     window.addEventListener("resize",function(){clearTimeout(mrt);mrt=setTimeout(function(){msize();},180);});
     msize(); mstep();
+    document.addEventListener("fh:navigate", function(e){
+      if(e.detail.id === "about") msize();
+    });
   }
 
   /* ---------- contact form ---------- */
